@@ -89,21 +89,7 @@ const HeroSection = () => {
               to create a complete, clean-energy ecosystem.
             </motion.p>
 
-            <motion.div initial={{
-            opacity: 0,
-            y: 20
-          }} animate={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            delay: 0.6,
-            duration: 0.8
-          }} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button size="lg" onClick={scrollToForm} className="group text-lg px-8 py-6 shadow-elegant hover:shadow-xl transition-all duration-300">
-                Get Your Ticket
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </motion.div>
+            {/* CTA moved to below the HowItWorks section on the Index page */}
 
             <motion.div initial={{
             opacity: 0

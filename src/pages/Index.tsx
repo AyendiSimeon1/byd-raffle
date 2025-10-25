@@ -4,12 +4,35 @@ import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
 import RaffleForm from "@/components/RaffleForm";
 import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 const Index = () => {
+  const scrollToForm = () => {
+    const formSection = document.getElementById("raffle-form");
+    formSection?.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <main className="min-h-screen">
       <HeroSection />
       <HowItWorks />
+      {/* CTA placed after HowItWorks per request */}
+      <section className="py-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl mx-auto"
+          >
+            <Button size="lg" onClick={scrollToForm} className="group text-lg px-8 py-6 shadow-elegant hover:shadow-xl transition-all duration-300">
+              Get Your Ticket
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </motion.div>
+        </div>
+      </section>
       <Testimonials />
       
       {/* Form Section */}

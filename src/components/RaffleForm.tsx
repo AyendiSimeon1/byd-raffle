@@ -8,7 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
-import { Loader2, Upload, X, CheckCircle2 } from "lucide-react";
+import { Loader2, Upload, X, CheckCircle2, Copy } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const formSchema = z.object({
   fullName: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name must be less than 100 characters"),
@@ -23,6 +24,9 @@ const RaffleForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [referralLink, setReferralLink] = useState<string>("");
+  const [copied, setCopied] = useState(false);
+  const [lastEmail, setLastEmail] = useState<string | null>(null);
 
   const {
     register,
@@ -73,31 +77,57 @@ const RaffleForm = () => {
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
-
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    console.log("Form submitted:", {
-      fullName: data.fullName,
-      email: data.email,
-      address: data.address,
-      hasImage: !!data.giftCardImage,
-    });
-
-    setIsSubmitting(false);
-    setIsSuccess(true);
-
-    toast({
-      title: "Submission Successful!",
-      description: "Thank you for joining! Our team will contact you shortly.",
-    });
-
-    // Reset form after 3 seconds
-    setTimeout(() => {
+    try {
+      // 1. Upload image to Supabase Storage
+      const file = data.giftCardImage;
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${data.email.replace(/[^a-zA-Z0-9]/g, "_")}_${Date.now()}.${fileExt}`;
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('giftcard-images')
+        .upload(fileName, file, { upsert: false });
+      if (uploadError) {
+        throw new Error('Image upload failed: ' + uploadError.message);
+      }
+      // 2. Get public URL
+      const { data: publicUrlData } = supabase.storage
+        .from('giftcard-images')
+        .getPublicUrl(fileName);
+      const imageUrl = publicUrlData?.publicUrl;
+      if (!imageUrl) {
+        throw new Error('Could not get image public URL');
+      }
+      // 3. Insert entry into raffle_entries
+      const { error: insertError } = await supabase.from('raffle_entries').insert([
+        {
+          full_name: data.fullName,
+          email: data.email,
+          address: data.address,
+          gift_card_image_url: imageUrl,
+        },
+      ]);
+      if (insertError) {
+        throw new Error('Entry insert failed: ' + insertError.message);
+      }
+      setIsSuccess(true);
+      setLastEmail(data.email);
+      const origin = typeof window !== "undefined" ? window.location.origin : "";
+      const link = `${origin}/?ref=${encodeURIComponent(data.email)}`;
+      setReferralLink(link);
+      toast({
+        title: "Submission Successful!",
+        description: "Thank you for joining! Our team will contact you shortly.",
+      });
       reset();
       setPreviewImage(null);
-      setIsSuccess(false);
-    }, 3000);
+    } catch (err: any) {
+      toast({
+        title: "Submission Failed",
+        description: err?.message || "An error occurred. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSuccess) {
@@ -120,6 +150,36 @@ const RaffleForm = () => {
         <p className="text-lg text-muted-foreground max-w-md mx-auto">
           Your submission has been received. Our team will contact you shortly with further details.
         </p>
+        {/* Referral UI */}
+        <div className="mt-6 space-y-3">
+          <p className="text-lg font-medium">Increase your chances of winning by referring others.</p>
+          <div className="flex items-center gap-3 max-w-xl mx-auto">
+            <Input
+              value={referralLink}
+              onChange={(e) => setReferralLink(e.target.value)}
+              className="h-12 text-base"
+            />
+            <Button
+              size="sm"
+              onClick={async () => {
+                try {
+                  if (typeof navigator !== "undefined" && navigator.clipboard) {
+                    await navigator.clipboard.writeText(referralLink || "");
+                  }
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2000);
+                } catch (e) {
+                  // fallback
+                  console.error("Copy failed", e);
+                }
+              }}
+            >
+              {copied ? "Copied" : "Copy"}
+              <Copy className="ml-2 w-4 h-4" />
+            </Button>
+          </div>
+          <p className="text-sm text-muted-foreground">Share this link with friends — each referred entry increases your chances.</p>
+        </div>
       </motion.div>
     );
   }
