@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import HeroSection from "@/components/HeroSection";
 import HowItWorks from "@/components/HowItWorks";
+import Testimonials from "@/components/Testimonials";
 import RaffleForm from "@/components/RaffleForm";
 import Footer from "@/components/Footer";
 
@@ -9,6 +10,7 @@ const Index = () => {
     <main className="min-h-screen">
       <HeroSection />
       <HowItWorks />
+      <Testimonials />
       
       {/* Form Section */}
       <section id="raffle-form" className="py-24 sm:py-32 bg-gradient-to-b from-background to-secondary/20">
