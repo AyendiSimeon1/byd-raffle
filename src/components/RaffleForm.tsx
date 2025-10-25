@@ -12,10 +12,10 @@ import { Loader2, Upload, X, CheckCircle2, Copy } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 const formSchema = z.object({
-  fullName: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name must be less than 100 characters"),
-  email: z.string().trim().email("Please enter a valid email address").max(255, "Email must be less than 255 characters"),
-  address: z.string().trim().min(10, "Please enter your complete address").max(500, "Address must be less than 500 characters"),
-  giftCardImage: z.instanceof(File, { message: "Please upload a gift card image" })
+  fullName: z.string().trim().min(2, "El nombre debe tener al menos 2 caracteres").max(100, "El nombre debe tener menos de 100 caracteres"),
+  email: z.string().trim().email("Por favor ingresa un correo electrónico válido").max(255, "El correo debe tener menos de 255 caracteres"),
+  address: z.string().trim().min(10, "Por favor ingresa tu dirección completa").max(500, "La dirección debe tener menos de 500 caracteres"),
+  giftCardImage: z.instanceof(File, { message: "Por favor sube una imagen de la tarjeta de regalo" })
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -44,8 +44,8 @@ const RaffleForm = () => {
       // Validate file size (max 10MB)
       if (file.size > 10 * 1024 * 1024) {
         toast({
-          title: "File too large",
-          description: "Please upload an image smaller than 10MB",
+          title: "Archivo demasiado grande",
+          description: "Por favor sube una imagen menor a 10MB",
           variant: "destructive",
         });
         return;
@@ -54,8 +54,8 @@ const RaffleForm = () => {
       // Validate file type
       if (!file.type.startsWith("image/")) {
         toast({
-          title: "Invalid file type",
-          description: "Please upload an image file",
+          title: "Tipo de archivo inválido",
+          description: "Por favor sube un archivo de imagen",
           variant: "destructive",
         });
         return;
@@ -86,7 +86,7 @@ const RaffleForm = () => {
         .from('giftcard-images')
         .upload(fileName, file, { upsert: false });
       if (uploadError) {
-        throw new Error('Image upload failed: ' + uploadError.message);
+  throw new Error('Error al subir la imagen: ' + uploadError.message);
       }
       // 2. Get public URL
       const { data: publicUrlData } = supabase.storage
@@ -94,7 +94,7 @@ const RaffleForm = () => {
         .getPublicUrl(fileName);
       const imageUrl = publicUrlData?.publicUrl;
       if (!imageUrl) {
-        throw new Error('Could not get image public URL');
+  throw new Error('No se pudo obtener la URL pública de la imagen');
       }
       // 3. Insert entry into raffle_entries
       const { error: insertError } = await supabase.from('raffle_entries').insert([
@@ -106,7 +106,7 @@ const RaffleForm = () => {
         },
       ]);
       if (insertError) {
-        throw new Error('Entry insert failed: ' + insertError.message);
+  throw new Error('Error al registrar tu participación: ' + insertError.message);
       }
       setIsSuccess(true);
       setLastEmail(data.email);
@@ -114,15 +114,15 @@ const RaffleForm = () => {
       const link = `${origin}/?ref=${encodeURIComponent(data.email)}`;
       setReferralLink(link);
       toast({
-        title: "Submission Successful!",
-        description: "Thank you for joining! Our team will contact you shortly.",
+        title: "¡Participación exitosa!",
+        description: "¡Gracias por participar! Nuestro equipo se pondrá en contacto contigo pronto.",
       });
       reset();
       setPreviewImage(null);
     } catch (err: any) {
       toast({
-        title: "Submission Failed",
-        description: err?.message || "An error occurred. Please try again.",
+        title: "Error al enviar",
+        description: err?.message || "Ocurrió un error. Por favor intenta de nuevo.",
         variant: "destructive",
       });
     } finally {
@@ -146,13 +146,13 @@ const RaffleForm = () => {
         >
           <CheckCircle2 className="w-12 h-12 text-primary" />
         </motion.div>
-        <h3 className="text-3xl font-bold">Thank You!</h3>
+        <h3 className="text-3xl font-bold">¡Gracias!</h3>
         <p className="text-lg text-muted-foreground max-w-md mx-auto">
-          Your submission has been received. Our team will contact you shortly with further details.
+          Tu participación ha sido recibida. Nuestro equipo se pondrá en contacto contigo pronto con más detalles.
         </p>
         {/* Referral UI */}
         <div className="mt-6 space-y-3">
-          <p className="text-lg font-medium">Increase your chances of winning by referring others.</p>
+          <p className="text-lg font-medium">Aumenta tus posibilidades de ganar refiriendo a otros.</p>
           <div className="flex items-center gap-3 max-w-xl mx-auto">
             <Input
               value={referralLink}
@@ -174,11 +174,11 @@ const RaffleForm = () => {
                 }
               }}
             >
-              {copied ? "Copied" : "Copy"}
+              {copied ? "Copiado" : "Copiar"}
               <Copy className="ml-2 w-4 h-4" />
             </Button>
           </div>
-          <p className="text-sm text-muted-foreground">Share this link with friends — each referred entry increases your chances.</p>
+          <p className="text-sm text-muted-foreground">Comparte este enlace con tus amigos — cada referido aumenta tus posibilidades.</p>
         </div>
       </motion.div>
     );
@@ -196,11 +196,11 @@ const RaffleForm = () => {
       <div className="grid sm:grid-cols-2 gap-6">
         <div className="space-y-2">
           <Label htmlFor="fullName" className="text-base">
-            Full Name *
+            Nombre completo *
           </Label>
           <Input
             id="fullName"
-            placeholder="John Doe"
+            placeholder="Juan Pérez"
             {...register("fullName")}
             className="h-12 text-base"
           />
@@ -211,12 +211,12 @@ const RaffleForm = () => {
 
         <div className="space-y-2">
           <Label htmlFor="email" className="text-base">
-            Email Address *
+            Correo electrónico *
           </Label>
           <Input
             id="email"
             type="email"
-            placeholder="john@example.com"
+            placeholder="juan@example.com"
             {...register("email")}
             className="h-12 text-base"
           />
@@ -228,11 +228,11 @@ const RaffleForm = () => {
 
       <div className="space-y-2">
         <Label htmlFor="address" className="text-base">
-          Complete Address *
+          Dirección completa *
         </Label>
         <Textarea
           id="address"
-          placeholder="123 Main Street, Apt 4B, New York, NY 10001"
+          placeholder="Calle Principal 123, Depto 4B, Ciudad de México, CDMX 10001"
           {...register("address")}
           className="min-h-24 text-base resize-none"
         />
@@ -243,7 +243,7 @@ const RaffleForm = () => {
 
       <div className="space-y-2">
         <Label htmlFor="giftCard" className="text-base">
-          Apple Gift Card Image *
+          Imagen de la tarjeta de regalo Apple *
         </Label>
         <div className="space-y-4">
           {!previewImage ? (
@@ -254,9 +254,9 @@ const RaffleForm = () => {
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
                 <Upload className="w-12 h-12 mb-3 text-muted-foreground" />
                 <p className="mb-2 text-base font-medium">
-                  Click to upload gift card image
+                  Haz clic para subir la imagen de la tarjeta
                 </p>
-                <p className="text-sm text-muted-foreground">PNG, JPG or JPEG (Max 10MB)</p>
+                <p className="text-sm text-muted-foreground">PNG, JPG o JPEG (Máx 10MB)</p>
               </div>
               <input
                 id="giftCard"
@@ -270,7 +270,7 @@ const RaffleForm = () => {
             <div className="relative rounded-2xl overflow-hidden border-2 border-border">
               <img
                 src={previewImage}
-                alt="Gift card preview"
+                alt="Vista previa de la tarjeta"
                 className="w-full h-64 object-contain bg-secondary"
               />
               <button
@@ -297,16 +297,16 @@ const RaffleForm = () => {
         {isSubmitting ? (
           <>
             <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-            Submitting...
+            Enviando...
           </>
         ) : (
-          "Submit Entry"
+          "Enviar participación"
         )}
       </Button>
 
       <p className="text-sm text-muted-foreground text-center">
-        By submitting this form, you agree to our terms and conditions and acknowledge 
-        that your information will be used solely for raffle participation.
+        Al enviar este formulario, aceptas nuestros términos y condiciones y reconoces
+        que tu información será utilizada únicamente para la participación en la rifa.
       </p>
     </motion.form>
   );

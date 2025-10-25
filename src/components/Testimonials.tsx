@@ -11,28 +11,28 @@ const testimonials = [
   {
     name: "Sarah Chen",
     location: "San Francisco, CA",
-    date: "January 2024",
+    date: "Enero 2024",
     image: sarahImage,
     proofImage: proof1,
-    testimonial: "I still can't believe I won! The BYD e6 has completely transformed my daily commute. Zero emissions, incredible range, and the team made the handover process so smooth. This raffle changed my life!",
+    testimonial: "¡Todavía no puedo creer que gané! El BYD e6 ha transformado por completo mi trayecto diario. Cero emisiones, autonomía increíble y el equipo hizo que la entrega fuera muy sencilla. ¡Esta rifa cambió mi vida!",
     verified: true,
   },
   {
     name: "Marcus Johnson",
     location: "Austin, TX",
-    date: "March 2024",
+    date: "Marzo 2024",
     image: marcusImage,
     proofImage: proof2,
-    testimonial: "Winning the 2024 raffle was a dream come true. The BYD e6 is an amazing vehicle - smooth, quiet, and perfect for my family. The entire process was transparent and professional. Highly recommend participating!",
+    testimonial: "Ganar la rifa 2024 fue un sueño hecho realidad. El BYD e6 es un vehículo increíble: suave, silencioso y perfecto para mi familia. Todo el proceso fue transparente y profesional. ¡Recomiendo participar!",
     verified: true,
   },
   {
     name: "Elena Rodriguez",
     location: "Miami, FL",
-    date: "July 2024",
+    date: "Julio 2024",
     image: elenaImage,
     proofImage: proof3,
-    testimonial: "When they called to tell me I won, I thought it was a joke! But it was real. Now I'm driving my dream electric car every day. The savings on gas alone are incredible. Thank you BYD for this opportunity!",
+    testimonial: "¡Cuando me llamaron para decirme que gané, pensé que era una broma! Pero era real. Ahora conduzco mi auto eléctrico soñado todos los días. El ahorro en gasolina es increíble. ¡Gracias BYD por esta oportunidad!",
     verified: true,
   },
 ];
@@ -55,14 +55,14 @@ const Testimonials = () => {
           className="text-center mb-16 space-y-4"
         >
           <h2 className="text-4xl sm:text-5xl font-bold">
-            Last Year's <span className="text-gradient">Winners</span>
+            <span className="text-gradient">Ganadores</span> del año pasado
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Real people. Real winners. Real stories. See what our 2024 raffle winners have to say
+            Personas reales. Ganadores reales. Historias reales. Mira lo que dicen los ganadores de la rifa 2024
           </p>
           <div className="flex items-center justify-center gap-2 text-primary">
             <CheckCircle2 className="w-5 h-5" />
-            <span className="font-semibold">All Winners Verified</span>
+            <span className="font-semibold">Todos los ganadores verificados</span>
           </div>
         </motion.div>
 
@@ -90,7 +90,7 @@ const Testimonials = () => {
                   {testimonial.verified && (
                     <div className="absolute top-4 right-4 glass-effect rounded-full px-3 py-1 flex items-center gap-1.5 text-sm font-medium shadow-lg">
                       <CheckCircle2 className="w-4 h-4 text-primary" />
-                      <span>Verified Winner</span>
+                      <span>Ganador verificado</span>
                     </div>
                   )}
                 </div>
@@ -146,14 +146,14 @@ const Testimonials = () => {
               <img src={elenaImage} alt="" className="w-8 h-8 rounded-full ring-2 ring-background object-cover" />
             </div>
             <div className="text-left">
-              <p className="text-sm font-semibold">Join 3 Happy Winners</p>
-              <p className="text-xs text-muted-foreground">From our 2024 raffle</p>
+              <p className="text-sm font-semibold">Únete a 3 ganadores felices</p>
+              <p className="text-xs text-muted-foreground">De nuestra rifa 2024</p>
             </div>
           </div>
 
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Every year, we give away brand new BYD electric vehicles to lucky participants. 
-            All winners are verified and announced publicly. Your chance could be next!
+            Cada año regalamos vehículos eléctricos BYD totalmente nuevos a participantes afortunados.
+            Todos los ganadores son verificados y anunciados públicamente. ¡Tu oportunidad puede ser la próxima!
           </p>
         </motion.div>
       </div>

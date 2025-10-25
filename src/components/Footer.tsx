@@ -12,17 +12,17 @@ const Footer = () => {
           className="text-center space-y-4"
         >
           <p className="text-lg font-semibold">
-            Every ticket sold helps us create sustainable energy solutions that power our world responsibly.
+            Cada boleto vendido nos ayuda a crear soluciones energéticas sostenibles que impulsan nuestro mundo de manera responsable.
           </p>
           <p className="text-muted-foreground">
-            Get your ticket today and take your chance to make a difference — and make it electric ⚡
+            Obtén tu boleto hoy y aprovecha la oportunidad de marcar la diferencia — ¡y hazlo eléctrico! ⚡
           </p>
           <div className="pt-6 space-y-2">
-            <p className="font-medium">Best Regards,</p>
-            <p className="text-primary font-semibold">The BYD Company Limited Team</p>
+            <p className="font-medium">Saludos cordiales,</p>
+            <p className="text-primary font-semibold">El equipo de BYD Company Limited</p>
           </div>
           <div className="pt-6 text-sm text-muted-foreground">
-            <p>© 2025 BYD Company Limited. All rights reserved.</p>
+            <p>© 2025 BYD Company Limited. Todos los derechos reservados.</p>
           </div>
         </motion.div>
       </div>

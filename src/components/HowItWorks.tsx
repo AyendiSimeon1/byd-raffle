@@ -4,20 +4,20 @@ import { CreditCard, Upload, CheckCircle } from "lucide-react";
 const steps = [
   {
     icon: CreditCard,
-    title: "Purchase Gift Card",
-    description: "Buy a 500 Mexican Pesos Apple Gift Card from your nearest retailer or online store.",
+    title: "Compra una tarjeta de regalo",
+    description: "Compra una tarjeta de regalo Apple de 500 pesos mexicanos en tu tienda favorita o en línea.",
     delay: 0.2,
   },
   {
     icon: Upload,
-    title: "Upload Card Code",
-    description: "Scratch the card and upload a clear photo of the code below.",
+    title: "Sube el código de la tarjeta",
+    description: "Rasca la tarjeta y sube una foto clara del código aquí abajo.",
     delay: 0.4,
   },
   {
     icon: CheckCircle,
-    title: "Submit & Wait",
-    description: "Submit your contact details and wait for confirmation from our team.",
+    title: "Envía y espera",
+    description: "Envía tus datos de contacto y espera la confirmación de nuestro equipo.",
     delay: 0.6,
   },
 ];
@@ -40,10 +40,10 @@ const HowItWorks = () => {
           className="text-center mb-16 space-y-4"
         >
           <h2 className="text-4xl sm:text-5xl font-bold">
-            How It <span className="text-gradient">Works</span>
+            ¿Cómo <span className="text-gradient">Funciona?</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Join our raffle in three simple steps and get your chance to win
+            Participa en nuestra rifa en tres sencillos pasos y obtén tu oportunidad de ganar
           </p>
         </motion.div>
 

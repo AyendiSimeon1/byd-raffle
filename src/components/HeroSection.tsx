@@ -42,36 +42,35 @@ const HeroSection = () => {
             duration: 0.6
           }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
               <Zap className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">Annual Car Raffle 2025</span>
+              <span className="text-sm font-medium text-primary">Gran Rifa de Autos 2025</span>
             </motion.div>
 
             <div className="space-y-4">
               <motion.h1 initial={{
-              opacity: 0,
-              y: 20
-            }} animate={{
-              opacity: 1,
-              y: 0
-            }} transition={{
-              delay: 0.3,
-              duration: 0.8
-            }} className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
-                Build Your{" "}
-                <span className="text-gradient">Dream</span>
-              </motion.h1>
+                opacity: 0,
+                y: 20
+              }} animate={{
+                opacity: 1,
+                y: 0
+              }} transition={{
+                delay: 0.3,
+                duration: 0.8
+              }} className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
+                  Construye tu <span className="text-gradient">Sueño</span>
+                </motion.h1>
 
-              <motion.p initial={{
-              opacity: 0,
-              y: 20
-            }} animate={{
-              opacity: 1,
-              y: 0
-            }} transition={{
-              delay: 0.4,
-              duration: 0.8
-            }} className="text-2xl sm:text-3xl font-semibold text-foreground/90">
-                Drive Home a 2025 BYD e7
-              </motion.p>
+                <motion.p initial={{
+                opacity: 0,
+                y: 20
+              }} animate={{
+                opacity: 1,
+                y: 0
+              }} transition={{
+                delay: 0.4,
+                duration: 0.8
+              }} className="text-2xl sm:text-3xl font-semibold text-foreground/90">
+                  Llévate a casa un BYD e7 2025
+                </motion.p>
             </div>
 
             <motion.p initial={{
@@ -84,9 +83,9 @@ const HeroSection = () => {
             delay: 0.5,
             duration: 0.8
           }} className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl">
-              Imagine yourself behind the wheel of a brand new 2025 BYD e7. By purchasing a ticket, 
-              you'll not only get a chance to win this amazing vehicle but also directly contribute 
-              to create a complete, clean-energy ecosystem.
+              Imagina estar al volante de un BYD e7 2025 totalmente nuevo. Al comprar un boleto,
+              no solo tendrás la oportunidad de ganar este increíble vehículo, sino que también contribuirás
+              directamente a crear un ecosistema de energía limpia y completo.
             </motion.p>
 
             {/* CTA moved to below the HowItWorks section on the Index page */}
@@ -105,8 +104,8 @@ const HeroSection = () => {
               </div>
               
               <div>
-                <div className="text-3xl font-bold text-primary">Dec 31</div>
-                <div className="text-sm text-muted-foreground">Drawing Date</div>
+                <div className="text-3xl font-bold text-primary">31 Dic</div>
+                <div className="text-sm text-muted-foreground">Fecha del sorteo</div>
               </div>
             </motion.div>
           </motion.div>
@@ -148,8 +147,8 @@ const HeroSection = () => {
                   <Zap className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <div className="text-sm font-semibold">100% Electric</div>
-                  <div className="text-xs text-muted-foreground">Zero Emissions</div>
+                  <div className="text-sm font-semibold">100% Eléctrico</div>
+                  <div className="text-xs text-muted-foreground">Cero Emisiones</div>
                 </div>
               </div>
             </motion.div>
