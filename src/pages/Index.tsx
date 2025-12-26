@@ -27,7 +27,7 @@ const Index = () => {
             className="max-w-3xl mx-auto"
           >
             <Button size="lg" onClick={scrollToForm} className="group text-lg px-8 py-6 shadow-elegant hover:shadow-xl transition-all duration-300">
-              ¡Obtén tu boleto!
+              Get Your Ticket!
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </motion.div>
@@ -47,10 +47,10 @@ const Index = () => {
           >
             <div className="text-center mb-12 space-y-4">
               <h2 className="text-4xl sm:text-5xl font-bold">
-                Participa en la <span className="text-gradient">Rifa</span>
+                Enter the <span className="text-gradient">Raffle</span>
               </h2>
               <p className="text-lg text-muted-foreground">
-                Completa el formulario para participar y ganar el BYD e7 2025
+                Complete the form to enter and win the 2025 BYD e7
               </p>
             </div>
 

@@ -42,7 +42,7 @@ const HeroSection = () => {
             duration: 0.6
           }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
               <Zap className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">Gran Rifa de Autos 2025</span>
+              <span className="text-sm font-medium text-primary">2025 Grand Car Raffle</span>
             </motion.div>
 
             <div className="space-y-4">
@@ -56,7 +56,7 @@ const HeroSection = () => {
                 delay: 0.3,
                 duration: 0.8
               }} className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
-                  Construye tu <span className="text-gradient">Sueño</span>
+                  Build Your <span className="text-gradient">Dream</span>
                 </motion.h1>
 
                 <motion.p initial={{
@@ -69,7 +69,7 @@ const HeroSection = () => {
                 delay: 0.4,
                 duration: 0.8
               }} className="text-2xl sm:text-3xl font-semibold text-foreground/90">
-                  Llévate a casa un BYD e7 2025
+                  Take Home a 2025 BYD e7
                 </motion.p>
             </div>
 
@@ -83,9 +83,9 @@ const HeroSection = () => {
             delay: 0.5,
             duration: 0.8
           }} className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl">
-              Imagina estar al volante de un BYD e7 2025 totalmente nuevo. Al comprar un boleto,
-              no solo tendrás la oportunidad de ganar este increíble vehículo, sino que también contribuirás
-              directamente a crear un ecosistema de energía limpia y completo.
+              Imagine yourself behind the wheel of a brand new 2025 BYD e7. When you buy a ticket,
+              you'll not only have the chance to win this incredible vehicle, but you'll also directly contribute
+              to creating a complete, clean energy ecosystem.
             </motion.p>
 
             {/* CTA moved to below the HowItWorks section on the Index page */}
@@ -104,8 +104,8 @@ const HeroSection = () => {
               </div>
               
               <div>
-                <div className="text-3xl font-bold text-primary">31 Dic</div>
-                <div className="text-sm text-muted-foreground">Fecha del sorteo</div>
+                <div className="text-3xl font-bold text-primary">Jan 31</div>
+                <div className="text-sm text-muted-foreground">Drawing Date</div>
               </div>
             </motion.div>
           </motion.div>
