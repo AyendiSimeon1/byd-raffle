@@ -5,7 +5,7 @@ const steps = [
   {
     icon: CreditCard,
     title: "Purchase a Gift Card",
-    description: "Buy a $500 Apple gift card from your favorite store or online.",
+    description: "Buy a $50 gift card (Razer, Apple, or Google) from your favorite store or online.",
     delay: 0.2,
   },
   {
